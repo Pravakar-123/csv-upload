@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/table.css">
+    <title>Table</title>
+</head>
+<body>
+    <div id="content">
+        <div id="head-table-container">
+            <div id="heading-part">
+                <div class="button">
+                    <a href="/"><button>Back</button></a>
+
+                </div>
+                <div class="search-part">
+                    <input type="search" placeholder="Search here">
+                    <button>Search</button>
+                     
+                </div>
+
+            </div>
+            <div id="table-container">
+                <table class="styled-table">
+                    <thead>
+                        <tr> 
+                           <%for(let i=0;i<keys.length;i++){%>
+                            <th><%=keys[i]%></th>
+                            
+                            
+                            <%}%>
+                            
+                            <!-- <th>Points</th>
+                            <th>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</th>
+                            <th>Name</th>
+                            <th>Points</th>
+                            <th>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</th>
+                            <th>Name</th>
+                            <th>Points</th>
+                            <th>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</th> -->
+                           
+                            
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%for(let i=0;i<result.length;i++){%>
+                            <tr>
+                                <%for(let j=0;j<keys.length;j++){%>
+                                    <td><%=result[i][keys[j]]%></td>
+                                    
+                                    
+                                <%}%>
+                                
+                                <!-- <td>6000</td>
+                                <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                                <td>Dom</td>
+                                <td>6000</td>
+                                <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                                <td>Dom</td>
+                                <td>6000</td>
+                                <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td> -->
+                            </tr>
+
+                        <%}%>
+                        
+                        <!-- <tr class="active-row">
+                            <td>Melissa</td>
+                            <td>5150</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr class="active-row">
+                            <td>Melissa</td>
+                            <td>5150</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr class="active-row">
+                            <td>Melissa</td>
+                            <td>5150</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr class="active-row">
+                            <td>Melissa</td>
+                            <td>5150</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr class="active-row">
+                            <td>Melissa</td>
+                            <td>5150</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr class="active-row">
+                            <td>Melissa</td>
+                            <td>5150</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr class="active-row">
+                            <td>Melissa</td>
+                            <td>5150</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr class="active-row">
+                            <td>Melissa</td>
+                            <td>5150</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr class="active-row">
+                            <td>Melissa</td>
+                            <td>5150</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr class="active-row">
+                            <td>Melissa</td>
+                            <td>5150</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr class="active-row">
+                            <td>Melissa</td>
+                            <td>5150</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr class="active-row">
+                            <td>Melissa</td>
+                            <td>5150</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr class="active-row">
+                            <td>Melissa</td>
+                            <td>5150</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr class="active-row">
+                            <td>Melissa</td>
+                            <td>5150</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr>
+                        <tr class="active-row">
+                            <td>Melissa</td>
+                            <td>5150</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                            <td>Dom</td>
+                            <td>6000</td>
+                            <td>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</td>
+                        </tr> -->
+                        
+                        <!-- and so on... -->
+                    </tbody>
+    
+            </div>
+
+        </div>
+        
+
+    </div>
+    
+</body>
+</html>
