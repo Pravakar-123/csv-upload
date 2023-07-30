@@ -1,3 +1,3 @@
 function checkFileType(){
-    alert(Hello);
+    alert("Hello");
 }
