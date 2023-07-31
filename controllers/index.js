@@ -1,14 +1,14 @@
 const path = require("path");
 const fs=require('fs');
 const csv=require('csvtojson');
-const resumePath = path.join(__dirname, "../uploads");
+const resumePath = path.join("../uploads/");
 const csvFile = require('../models/csvFileSchama');
 console.log(resumePath);
 const multer = require("multer");
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, resumePath);
+        cb(null, './uploads');
     },
     filename: function (req, file, cb) {
         const uniqueSuffix = Date.now();
