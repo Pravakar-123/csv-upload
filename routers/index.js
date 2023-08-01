@@ -2,7 +2,7 @@ const express=require('express');
 const router=express.Router();
 const index=require('../controllers/index.js');
 const multer = require("multer");
-const upload = multer({ dest: 'uploads/files/csv/'})
+const upload = multer({ dest: 'uploads/files'})
 router.get('/',index.home);
 router.post('/upload-file',upload.single('file') ,index.fileUpload);
 router.get('/delete/:destination',index.delete);
