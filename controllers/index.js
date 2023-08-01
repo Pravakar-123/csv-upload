@@ -4,21 +4,21 @@ const csv=require('csvtojson');
 const resumePath = path.join("../uploads/");
 const csvFile = require('../models/csvFileSchama');
 console.log(resumePath);
-const multer = require("multer");
+// const multer = require("multer");
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './uploads');
-    },
-    filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now();
-        cb(null, file.fieldname + "-" + uniqueSuffix + ".js");
-    },
-});
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, './uploads');
+//     },
+//     filename: function (req, file, cb) {
+//         const uniqueSuffix = Date.now();
+//         cb(null, file.fieldname + "-" + uniqueSuffix + ".js");
+//     },
+// });
 
-const upload = multer({
-    storage: storage
-}).single("file");
+// const upload = multer({
+//     storage: storage
+// }).single("file");
 
 module.exports.home = function (req, res) {
     csvFile.find({}).then((result) => {
@@ -35,42 +35,46 @@ module.exports.home = function (req, res) {
 }
 
 module.exports.fileUpload = async function (req, res) {
-    upload(req, res, async function (err) {
-        if (err instanceof multer.MulterError) {
-            // A Multer error occurred when uploading.
-            console.log(err.code);
-            return res.send(err.code);
-        }
-        else if (err) {
-            // An unknown error occurred when uploading.
-            console.log(err);
-            console.log(2);
-            return res.send(err.message);
-        }
+    console.log(req.file);
+    if(req.file.mimetype==='text/csv'){
+        console.log("This is csv file");
+    }
+    // upload(req, res, async function (err) {
+    //     if (err instanceof multer.MulterError) {
+    //         // A Multer error occurred when uploading.
+    //         console.log(err.code);
+    //         return res.send(err.code);
+    //     }
+    //     else if (err) {
+    //         // An unknown error occurred when uploading.
+    //         console.log(err);
+    //         console.log(2);
+    //         return res.send(err.message);
+    //     }
         
-            // const jobid = req.query.jobid;
-            console.log(req.file);
-            var csvfile = new csvFile({
-                name: req.file.originalname,
-                destination: req.file.filename
-            })
-            try {
-               let ans= await csvfile.save();
-               console.log(ans);
+    //         // const jobid = req.query.jobid;
+    //         console.log(req.file);
+    //         var csvfile = new csvFile({
+    //             name: req.file.originalname,
+    //             destination: req.file.filename
+    //         })
+    //         try {
+    //            let ans= await csvfile.save();
+    //            console.log(ans);
               
                 
-            } catch (error) {
-                console.log("Error to save date in data base",err);
-                return res.send(err);
+    //         } catch (error) {
+    //             console.log("Error to save date in data base",err);
+    //             return res.send(err);
                 
-            }
+    //         }
             
            
            
 
       
 
-    });
+    // });
     
 
     // // csvfile.save().then((result) => {
