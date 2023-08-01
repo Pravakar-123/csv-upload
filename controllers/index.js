@@ -1,6 +1,6 @@
 const path = require("path");
-const fs=require('fs');
-const csv=require('csvtojson');
+const fs = require('fs');
+const csv = require('csvtojson');
 const resumePath = path.join("../uploads/");
 const csvFile = require('../models/csvFileSchama');
 console.log(resumePath);
@@ -36,9 +36,29 @@ module.exports.home = function (req, res) {
 
 module.exports.fileUpload = async function (req, res) {
     console.log(req.file);
-    if(req.file.mimetype==='text/csv'){
+
+    if (req.file.mimetype === 'text/csv') {
         console.log("This is csv file");
     }
+    var csvfile = new csvFile({
+        name: req.file.originalname,
+        destination: req.file.filename
+    })
+       csvfile.save().then((ans)=>{
+        console.log(ans);
+        return res.redirect('/');
+
+       }).catch((err)=>{
+        console.log("Error to save data in database",err);
+        return res.send("Error to save data in data base");
+        
+       })
+        
+
+
+   
+
+
     // upload(req, res, async function (err) {
     //     if (err instanceof multer.MulterError) {
     //         // A Multer error occurred when uploading.
@@ -51,7 +71,7 @@ module.exports.fileUpload = async function (req, res) {
     //         console.log(2);
     //         return res.send(err.message);
     //     }
-        
+
     //         // const jobid = req.query.jobid;
     //         console.log(req.file);
     //         var csvfile = new csvFile({
@@ -61,21 +81,21 @@ module.exports.fileUpload = async function (req, res) {
     //         try {
     //            let ans= await csvfile.save();
     //            console.log(ans);
-              
-                
+
+
     //         } catch (error) {
     //             console.log("Error to save date in data base",err);
     //             return res.send(err);
-                
-    //         }
-            
-           
-           
 
-      
+    //         }
+
+
+
+
+
 
     // });
-    
+
 
     // // csvfile.save().then((result) => {
     // //     console.log("Hello i am salaj mondal");
@@ -85,9 +105,9 @@ module.exports.fileUpload = async function (req, res) {
     // //     // return res.redirect('/');
     // // })
     // return res.send("File Uploaded");
-    return res.redirect('.');
+    // return res.redirect('.');
 
-    
+
 
 }
 
@@ -95,18 +115,18 @@ module.exports.fileUpload = async function (req, res) {
 module.exports.delete = function (req, res) {
     csvFile.findById(req.params.destination).then((result) => {
         console.log(result);
-        const p = path.join(resumePath,result.destination);
+        const p = path.join('uploads/files', result.destination);
 
         try {
             console.log(p);
             fs.unlinkSync(p)
             //file removed
-            csvFile.findByIdAndDelete(result.id).then((ans)=>{
+            csvFile.findByIdAndDelete(result.id).then((ans) => {
                 res.redirect('/')
-            }).catch((err)=>{
+            }).catch((err) => {
                 return console.error(err);
             })
-            
+
         } catch (err) {
             console.error(err)
         }
@@ -119,29 +139,32 @@ module.exports.delete = function (req, res) {
     // return;
 }
 
-module.exports.openFile=function(req,res){
-    csvFile.findById(req.params.id).then((ans)=>{
+module.exports.openFile = function (req, res) {
+    csvFile.findById(req.params.id).then((ans) => {
         console.log(ans);
-        const pathToRead=path.join(resumePath,ans.destination);
-        csv().fromFile(pathToRead).then((result)=>{
+        const pathToRead = path.join('uploads/files', ans.destination);
+        console.log(pathToRead);
+        csv().fromFile(pathToRead).then((result) => {
             console.log(result);
             console.log(Object.keys(result[0]));
-            let keys=Object.keys(result[0])
-            return res.render('table',{result:result,
-                keys:keys});
-        }).catch((err)=>{
-            console.log("error to convert csv to json",err);
+            let keys = Object.keys(result[0])
+            return res.render('table', {
+                result: result,
+                keys: keys
+            });
+        }).catch((err) => {
+            console.log("error to convert csv to json", err);
             return res.send(err);
         })
 
 
-    }).catch((err)=>{
-        console.log("Error to find data from db",err);
+    }).catch((err) => {
+        console.log("Error to find data from db", err);
         return res.send(err);
     })
-    
-  
-  
+
+
+
 }
 
 
