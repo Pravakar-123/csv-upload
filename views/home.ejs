@@ -9,11 +9,14 @@
 </head>
 
 <body>
+    <!-- Navbar  -->
     <header id="header-home">
         <h3>Csv Reader</h3>
     </header>
+    
     <div id="content-section">
         <div id="container-of-content">
+            <!-- Upload file section -->
             <div id="file-upload-section">
                 <div id="file-input-section">
                     <form  onsubmit="return checkFileType()" action="/upload-file" method="post" enctype="multipart/form-data" >
@@ -30,6 +33,7 @@
 
                 </div>
             </div>
+            <!-- File list section -->
             <div id="file-list-section">
                 <div id="head-of-file-list">
                     <h4>List of Files</h4>
@@ -57,274 +61,7 @@
                         </div>
 
                     <%}%>
-                   
-                    <!-- <div class="list-item">
-                        <div class="name-section">
-                            <div class="file-name">
-                                Hello World
-                            </div>
-
-                        </div>
-                        <div class="button-container">
-                            <div class="delete-button-section">
-                                <a href=""><img src="image/delete.png" alt=""></a>
-
-                            </div>
-                            <div class="open-button-section">
-                                <a href=""><img src="image/share (1).png" alt=""></a>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class="list-item">
-                        <div class="name-section">
-                            <div class="file-name">
-                                Hello World
-                            </div>
-
-                        </div>
-                        <div class="button-container">
-                            <div class="delete-button-section">
-                                <a href=""><img src="image/delete.png" alt=""></a>
-
-                            </div>
-                            <div class="open-button-section">
-                                <a href=""><img src="image/share (1).png" alt=""></a>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class="list-item">
-                        <div class="name-section">
-                            <div class="file-name">
-                                Hello World
-                            </div>
-
-                        </div>
-                        <div class="button-container">
-                            <div class="delete-button-section">
-                                <a href=""><img src="image/delete.png" alt=""></a>
-
-                            </div>
-                            <div class="open-button-section">
-                                <a href=""><img src="image/share (1).png" alt=""></a>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class="list-item">
-                        <div class="name-section">
-                            <div class="file-name">
-                                Hello World
-                            </div>
-
-                        </div>
-                        <div class="button-container">
-                            <div class="delete-button-section">
-                                <a href=""><img src="image/delete.png" alt=""></a>
-
-                            </div>
-                            <div class="open-button-section">
-                                <a href=""><img src="image/share (1).png" alt=""></a>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class="list-item">
-                        <div class="name-section">
-                            <div class="file-name">
-                                Hello World
-                            </div>
-
-                        </div>
-                        <div class="button-container">
-                            <div class="delete-button-section">
-                                <a href=""><img src="image/delete.png" alt=""></a>
-
-                            </div>
-                            <div class="open-button-section">
-                                <a href=""><img src="image/share (1).png" alt=""></a>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class="list-item">
-                        <div class="name-section">
-                            <div class="file-name">
-                                Hello World
-                            </div>
-
-                        </div>
-                        <div class="button-container">
-                            <div class="delete-button-section">
-                                <a href=""><img src="image/delete.png" alt=""></a>
-
-                            </div>
-                            <div class="open-button-section">
-                                <a href=""><img src="image/share (1).png" alt=""></a>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class="list-item">
-                        <div class="name-section">
-                            <div class="file-name">
-                                Hello World
-                            </div>
-
-                        </div>
-                        <div class="button-container">
-                            <div class="delete-button-section">
-                                <a href=""><img src="image/delete.png" alt=""></a>
-
-                            </div>
-                            <div class="open-button-section">
-                                <a href=""><img src="image/share (1).png" alt=""></a>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class="list-item">
-                        <div class="name-section">
-                            <div class="file-name">
-                                Hello World
-                            </div>
-
-                        </div>
-                        <div class="button-container">
-                            <div class="delete-button-section">
-                                <a href=""><img src="image/delete.png" alt=""></a>
-
-                            </div>
-                            <div class="open-button-section">
-                                <a href=""><img src="image/share (1).png" alt=""></a>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class="list-item">
-                        <div class="name-section">
-                            <div class="file-name">
-                                Hello World
-                            </div>
-
-                        </div>
-                        <div class="button-container">
-                            <div class="delete-button-section">
-                                <a href=""><img src="image/delete.png" alt=""></a>
-
-                            </div>
-                            <div class="open-button-section">
-                                <a href=""><img src="image/share (1).png" alt=""></a>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class="list-item">
-                        <div class="name-section">
-                            <div class="file-name">
-                                Hello World
-                            </div>
-
-                        </div>
-                        <div class="button-container">
-                            <div class="delete-button-section">
-                                <a href=""><img src="image/delete.png" alt=""></a>
-
-                            </div>
-                            <div class="open-button-section">
-                                <a href=""><img src="image/share (1).png" alt=""></a>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class="list-item">
-                        <div class="name-section">
-                            <div class="file-name">
-                                Hello World
-                            </div>
-
-                        </div>
-                        <div class="button-container">
-                            <div class="delete-button-section">
-                                <a href=""><img src="image/delete.png" alt=""></a>
-
-                            </div>
-                            <div class="open-button-section">
-                                <a href=""><img src="image/share (1).png" alt=""></a>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class="list-item">
-                        <div class="name-section">
-                            <div class="file-name">
-                                Hello World
-                            </div>
-
-                        </div>
-                        <div class="button-container">
-                            <div class="delete-button-section">
-                                <a href=""><img src="image/delete.png" alt=""></a>
-
-                            </div>
-                            <div class="open-button-section">
-                                <a href=""><img src="image/share (1).png" alt=""></a>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class="list-item">
-                        <div class="name-section">
-                            <div class="file-name">
-                                Hello World
-                            </div>
-
-                        </div>
-                        <div class="button-container">
-                            <div class="delete-button-section">
-                                <a href=""><img src="image/delete.png" alt=""></a>
-
-                            </div>
-                            <div class="open-button-section">
-                                <a href=""><img src="image/share (1).png" alt=""></a>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class="list-item">
-                        <div class="name-section">
-                            <div class="file-name">
-                                Hello World
-                            </div>
-
-                        </div>
-                        <div class="button-container">
-                            <div class="delete-button-section">
-                                <a href=""><img src="image/delete.png" alt=""></a>
-
-                            </div>
-                            <div class="open-button-section">
-                                <a href=""><img src="image/share (1).png" alt=""></a>
-                            </div>
-                        </div>
-
-
-                    </div> -->
-
+                  
                 </div>
 
             </div>
@@ -335,10 +72,11 @@
 
 
     <script type="text/javascript">
+          //if file type is not csv file then it does not allow to submit the form
         function checkFileType() {
             let file = document.getElementById('file');
             console.log(file.value);
-            if(isJs(file.value)){
+            if(isCsv(file.value)){
                 alert('Hello');
             }
             else{
@@ -353,8 +91,8 @@
             // alert("Hello");
             return true;
         }
-
-        function isJs(js) {
+        //This function check that file is csv file or not
+        function isCsv(js) {
             const ext = ['.csv'];
             return ext.some(el => js.endsWith(el));
         }

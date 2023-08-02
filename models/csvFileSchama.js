@@ -1,5 +1,6 @@
+//Import mongoose module
 const mongoose=require('mongoose');
-
+//Creating file schama
 const fileSchama=mongoose.Schema({
     name:{
         type:String,
@@ -14,6 +15,7 @@ const fileSchama=mongoose.Schema({
 })
 
 
+//Creating model
 const csvFile=mongoose.model('csvFile',fileSchama);
 
 module.exports=csvFile;

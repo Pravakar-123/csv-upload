@@ -1,25 +1,28 @@
+//Import path module
 const path = require("path");
+//Import file system module
 const fs = require('fs');
+//Import csvtojson module
 const csv = require('csvtojson');
-const resumePath = path.join("../uploads/");
+//Import request module
+const request = require('request');
+//import firebase/app 
+const initializeApp = require("firebase/app");
+//Import csvfile model
 const csvFile = require('../models/csvFileSchama');
-console.log(resumePath);
-// const multer = require("multer");
+console.log(initializeApp);
+//Import firebase/storage
+const st = require("firebase/storage");
+//Import firebase config
+const config = require('../config/firebaseconfig');
 
-// const storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//         cb(null, './uploads');
-//     },
-//     filename: function (req, file, cb) {
-//         const uniqueSuffix = Date.now();
-//         cb(null, file.fieldname + "-" + uniqueSuffix + ".js");
-//     },
-// });
+//Initialize a firebase application
+initializeApp.initializeApp(config.firebaseConfig);
 
-// const upload = multer({
-//     storage: storage
-// }).single("file");
+// Initialize Cloud Storage and get a reference to the service
+const storage = st.getStorage();
 
+//This function 
 module.exports.home = function (req, res) {
     csvFile.find({}).then((result) => {
         return res.render('home', {
@@ -34,129 +37,119 @@ module.exports.home = function (req, res) {
 
 }
 
+//This function help to upload a file
 module.exports.fileUpload = async function (req, res) {
     console.log(req.file);
 
-    if (req.file.mimetype === 'text/csv') {
-        console.log("This is csv file");
+    try {
+        const dateTime = giveCurrentDateTime();
+
+        const storageRef = st.ref(storage, `files/${req.file.originalname + "" + dateTime + '.csv'}`);
+
+        // Create file metadata including the content type
+        const metadata = {
+            contentType: req.file.mimetype,
+        };
+
+        // Upload the file in the bucket storage
+        const snapshot = await st.uploadBytesResumable(storageRef, req.file.buffer, metadata);
+        //by using uploadBytesResumable we can control the progress of uploading like pause, resume, cancel
+
+        // Grab the public url
+        const downloadURL = await st.getDownloadURL(snapshot.ref);
+
+        console.log('File successfully uploaded.');
+        console.log(req.file);
+
+        if (req.file.mimetype === 'text/csv') {
+            console.log("This is csv file");
+        }
+        var csvfile = new csvFile({
+            name: req.file.originalname + "" + dateTime + '.csv',
+            destination: downloadURL
+        })
+        csvfile.save().then((ans) => {
+            console.log(ans);
+           
+            return res.redirect('/');
+
+        }).catch((err) => {
+            console.log("Error to save data in database", err);
+            return res.send("Error to save data in data base");
+
+        })
+
+
+    } catch (error) {
+        return res.status(400).send(error.message)
     }
-    var csvfile = new csvFile({
-        name: req.file.originalname,
-        destination: req.file.filename
-    })
-       csvfile.save().then((ans)=>{
-        console.log(ans);
-        return res.redirect('/');
-
-       }).catch((err)=>{
-        console.log("Error to save data in database",err);
-        return res.send("Error to save data in data base");
-        
-       })
-        
-
-
-   
-
-
-    // upload(req, res, async function (err) {
-    //     if (err instanceof multer.MulterError) {
-    //         // A Multer error occurred when uploading.
-    //         console.log(err.code);
-    //         return res.send(err.code);
-    //     }
-    //     else if (err) {
-    //         // An unknown error occurred when uploading.
-    //         console.log(err);
-    //         console.log(2);
-    //         return res.send(err.message);
-    //     }
-
-    //         // const jobid = req.query.jobid;
-    //         console.log(req.file);
-    //         var csvfile = new csvFile({
-    //             name: req.file.originalname,
-    //             destination: req.file.filename
-    //         })
-    //         try {
-    //            let ans= await csvfile.save();
-    //            console.log(ans);
-
-
-    //         } catch (error) {
-    //             console.log("Error to save date in data base",err);
-    //             return res.send(err);
-
-    //         }
-
-
-
-
-
-
-    // });
-
-
-    // // csvfile.save().then((result) => {
-    // //     console.log("Hello i am salaj mondal");
-    // //     return res.redirect('.');
-    // // }).catch((err) => {
-    // //     console.log("Error in file upload", err);
-    // //     // return res.redirect('/');
-    // // })
-    // return res.send("File Uploaded");
-    // return res.redirect('.');
-
-
-
+    
 }
 
+//This function return current date and time in string format
+const giveCurrentDateTime = () => {
+    const today = new Date();
+    const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    const dateTime = date + ' ' + time;
+    return dateTime;
+}
 
+//This function delete files
 module.exports.delete = function (req, res) {
     csvFile.findById(req.params.destination).then((result) => {
         console.log(result);
-        const p = path.join('uploads/files', result.destination);
 
-        try {
-            console.log(p);
-            fs.unlinkSync(p)
-            //file removed
-            csvFile.findByIdAndDelete(result.id).then((ans) => {
-                res.redirect('/')
-            }).catch((err) => {
-                return console.error(err);
+        // Create a reference to the file to delete
+        const desertRef = st.ref(storage, 'files/'+result.name);
+
+        // Delete the file
+        st.deleteObject(desertRef).then(() => {
+            // File deleted successfully
+            
+            csvFile.findByIdAndDelete(result.id).then((ans)=>{
+                console.log("Delete complate");
+                return res.redirect('/');
+
             })
+            .catch((err)=>{
+                return res.send(err);
 
-        } catch (err) {
-            console.error(err)
-        }
+            })
+           
+        }).catch((error) => {
+            // Uh-oh, an error occurred!
+           
+        });
+
+
 
     }).catch((err) => {
         console.log("Error to find file", err);
         return res.send(err.message);
     })
-    // console.log(req.params.destination);
-    // return;
+    
 }
 
+//This function represent the csv file in table format
 module.exports.openFile = function (req, res) {
     csvFile.findById(req.params.id).then((ans) => {
         console.log(ans);
-        const pathToRead = path.join('uploads/files', ans.destination);
-        console.log(pathToRead);
-        csv().fromFile(pathToRead).then((result) => {
-            console.log(result);
-            console.log(Object.keys(result[0]));
-            let keys = Object.keys(result[0])
-            return res.render('table', {
-                result: result,
-                keys: keys
-            });
-        }).catch((err) => {
-            console.log("error to convert csv to json", err);
-            return res.send(err);
-        })
+        csv()
+            .fromStream(request.get(ans.destination))
+            .then((result) => {
 
+                console.log(result);
+                console.log(Object.keys(result[0]));
+                let keys = Object.keys(result[0])
+                return res.render('table', {
+                    result: result,
+                    keys: keys
+                });
+            }).catch((err) => {
+                console.error(err);
+                return res.send('Error to fetch data');
+            })
 
     }).catch((err) => {
         console.log("Error to find data from db", err);
