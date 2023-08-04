@@ -66,7 +66,8 @@ module.exports.fileUpload = async function (req, res) {
         }
         var csvfile = new csvFile({
             name: req.file.originalname + "" + dateTime + '.csv',
-            destination: downloadURL
+            destination: downloadURL,
+            originalname:req.file.originalname 
         })
         csvfile.save().then((ans) => {
             console.log(ans);

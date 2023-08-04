@@ -43,7 +43,7 @@
                         <div class="list-item">
                             <div class="name-section">
                                 <div class="file-name">
-                                    <%=result[i].name%>
+                                    <%=result[i].originalname%>
                                 </div>
     
                             </div>
@@ -71,31 +71,9 @@
     </div>
 
 
-    <script type="text/javascript">
+    <script type="text/javascript" src="/js/checkFileType.js">
           //if file type is not csv file then it does not allow to submit the form
-        function checkFileType() {
-            let file = document.getElementById('file');
-            console.log(file.value);
-            if(isCsv(file.value)){
-                alert('Hello');
-            }
-            else{
-                alert('Only .csv is allowed')
-                return false;
-            }
-            console.log('Hello');
-            window.setInterval(() => {
-                console.log("Hello");
-
-            }, 500000);
-            // alert("Hello");
-            return true;
-        }
-        //This function check that file is csv file or not
-        function isCsv(js) {
-            const ext = ['.csv'];
-            return ext.some(el => js.endsWith(el));
-        }
+        
     </script>
 
 </body>

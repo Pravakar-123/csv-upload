@@ -9,6 +9,10 @@ const fileSchama=mongoose.Schema({
     destination:{
         type:String,
         required:true
+    },
+    originalname:{
+        type:String,
+        required:true
     }
 },{
     timeStamp:true
