@@ -10,14 +10,12 @@ app.set('views','./views');
 
 //Telling express that we are using this static file
 app.use(express.static('./assets'));
-// app.get('/',(req,res)=>{
-//     return res.render('table');
-// })
+
 
 //Main routes
 app.use('/',require('./routers'));
 
-
+//Universal routes
 app.get('*',(req,res)=>{
     return res.send('page not found');
 })

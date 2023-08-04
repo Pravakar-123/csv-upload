@@ -133,6 +133,7 @@ module.exports.delete = function (req, res) {
 
 //This function represent the csv file in table format
 module.exports.openFile = function (req, res) {
+    console.log(req.query);
     csvFile.findById(req.params.id).then((ans) => {
         console.log(ans);
         csv()
@@ -142,6 +143,7 @@ module.exports.openFile = function (req, res) {
                 console.log(result);
                 console.log(Object.keys(result[0]));
                 let keys = Object.keys(result[0])
+                
                 return res.render('table', {
                     result: result,
                     keys: keys
